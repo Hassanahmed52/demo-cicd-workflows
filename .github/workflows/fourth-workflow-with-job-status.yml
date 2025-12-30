@@ -1,4 +1,4 @@
-name: fourth workflow using github actions
+name: fourth workflow using github actions 
 
 run-name: >+
           fourth workflow
@@ -27,7 +27,7 @@ jobs:
     steps:
       - name: echo some text
         run: echo "hey there guyssssssssssssssssssssssssssssssssssssssssssssss......"
-      - name: print file content
+      - name: print file content, now this will work
         run: cat firstfile.txt
 
   third-notification-job:
