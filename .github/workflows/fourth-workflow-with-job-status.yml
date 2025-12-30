@@ -9,7 +9,7 @@ run-name: >+
 on:
   push:
     branches:
-      - feature/*
+      - feature1/*
 
 jobs:
   first-job:
