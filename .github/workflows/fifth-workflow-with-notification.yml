@@ -49,7 +49,7 @@ jobs:
           username: ${{secrets.SMTP_USERNAME}}
           password: ${{secrets.SMTP_PASSWORD}}
           subject: github actions job result
-          to: ${{var.MAIL_TO_LIST}}
+          to: ${{vars.MAIL_TO_LIST}}
           from: hassanahmed github actions
           body: >+
             Build job of ${{github.repository}} completed with result status of ${{needs.second-fail-job.result}}
