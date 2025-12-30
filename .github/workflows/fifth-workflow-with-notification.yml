@@ -6,9 +6,10 @@ run-name: >+
           using ${{ github.event_name }} event \
           on branch ${{ github.ref  }} of ${{github.repository}} repo.
 on:
-  push:
-    branches:
-      - feature1/*
+  workflow_dispatch:
+#  push:
+ #   branches:
+  #    - feature1/*
 jobs:
   first-job:
     runs-on: ubuntu-latest
