@@ -5,8 +5,8 @@ run-name: ${{ github.actor  }} has triggered this workflow using ${{ github.even
 
 on:
   workflow_dispatch:
-  - push
-  - pull_request
+  push:
+  pull_request:
 
 jobs:
   first-job:
