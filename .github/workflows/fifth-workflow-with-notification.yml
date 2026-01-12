@@ -1,7 +1,7 @@
-name: Fourth Workflow Using GitHub Actions
+name: Fifth Workflow Using GitHub Actions
 
 run-name: >+ 
-          Fourth workflow 
+          Fifth workflow 
           ${{ github.actor  }} has triggered this workflow \
           using ${{ github.event_name }} event \
           on branch ${{ github.ref  }} of ${{github.repository}} repo.
@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 #  push:
  #   branches:
-  #    - feature1/test-workflow
+  #    - feature1/*
 jobs:
   first-job:
     runs-on: ubuntu-latest
@@ -40,6 +40,18 @@ jobs:
         if: ${{ needs.second-fail-job.result == 'success' }}
         run: echo "Job succeeded - Sending notification to the dev or other team members"
 
-      - name: Always run this step on second job notifaction
+      - name: always run this step on second job notification
         if: always()
-        run: echo "Second Job result status is ${{needs.second-fail-job.result}}"
+        uses: dawidd6/action-send-mail@v6
+        with:
+          server_address: ${{secrets.SMTP_HOST}}
+          server_port: 587
+          secure: false
+          username: ${{secrets.SMTP_USERNAME}}
+          password: ${{secrets.SMTP_PASSWORD}}
+          subject: github actions job result
+          to: ${{vars.MAIL_TO_LIST}}
+          from: hassanahmed github actions
+          body: >+
+            Build job of ${{github.repository}} completed with result status of ${{needs.second-fail-job.result}}
+            "Find more details on: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
